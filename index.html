@@ -225,6 +225,153 @@ select:focus,input:focus{border-color:var(--a1)}
 .sl-time{font-size:9.5px;color:var(--mu);min-width:120px}
 .sl-msg{flex:1;color:var(--mu2)}
 .api-test-box{background:var(--bg);border:1px solid var(--b1);border-radius:6px;padding:10px 12px;font-family:monospace;font-size:10.5px;color:var(--g);max-height:120px;overflow-y:auto;white-space:pre;line-height:1.6}
+
+/* EXECUTE BAR */
+.exec-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(90deg,rgba(59,130,246,.08),rgba(20,184,166,.05));
+  border:1px solid var(--b1);border-radius:8px;padding:10px 14px;
+  flex-wrap:wrap;gap:8px;flex-shrink:0;
+}
+.exec-bar-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.exec-bar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.exec-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--tx)}
+.exec-source{font-size:10px;color:var(--mu);display:flex;align-items:center;gap:5px}
+.exec-source-dot{width:6px;height:6px;border-radius:50%;background:var(--g);flex-shrink:0}
+.exec-source-dot.off{background:var(--mu)}
+.exec-source-dot.err{background:var(--r)}
+.exec-badge{font-size:9.5px;padding:2px 7px;border-radius:4px;font-weight:700;background:rgba(16,185,129,.12);color:var(--g)}
+.exec-badge.pending{background:rgba(100,116,139,.12);color:var(--mu)}
+.exec-badge.err{background:rgba(239,68,68,.12);color:var(--r)}
+.fmt-select{
+  background:var(--s2);border:1px solid var(--b1);color:var(--tx);
+  border-radius:5px;padding:5px 8px;font-size:11px;font-family:'DM Sans',sans-serif;
+  outline:none;cursor:pointer;transition:border-color .13s;
+}
+.fmt-select:focus{border-color:var(--a1)}
+.btn-exec{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--a1),var(--tl));
+  color:#fff;border:none;border-radius:6px;padding:7px 16px;
+  font-size:11.5px;font-weight:700;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all .15s;
+  box-shadow:0 2px 12px rgba(59,130,246,.3);
+}
+.btn-exec:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(59,130,246,.45)}
+.btn-exec:active{transform:translateY(0)}
+.btn-exec:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-exec-ico{font-size:13px}
+
+/* EXECUTE PROGRESS MODAL */
+.exec-ov{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.exec-ov.open{opacity:1;pointer-events:all}
+.exec-mo{background:var(--s1);border:1px solid var(--b1);border-radius:12px;width:520px;max-width:94vw;overflow:hidden;transform:scale(.95);transition:transform .2s}
+.exec-ov.open .exec-mo{transform:scale(1)}
+.exec-mo-head{padding:18px 20px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between}
+.exec-mo-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
+.exec-steps{display:flex;flex-direction:column;gap:0;padding:0 20px}
+.exec-step{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(30,45,69,.5)}
+.exec-step:last-child{border-bottom:none}
+.exec-step-ico{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--s2);border:1px solid var(--b1);transition:all .3s}
+.exec-step-ico.done{background:rgba(16,185,129,.15);border-color:var(--g)}
+.exec-step-ico.active{background:rgba(59,130,246,.15);border-color:var(--a1);animation:stepPulse .8s infinite}
+.exec-step-ico.err{background:rgba(239,68,68,.12);border-color:var(--r)}
+@keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(59,130,246,.4)}50%{box-shadow:0 0 0 5px rgba(59,130,246,.0)}}
+.exec-step-info{flex:1}
+.exec-step-name{font-size:12px;font-weight:600;margin-bottom:2px}
+.exec-step-desc{font-size:10.5px;color:var(--mu2)}
+.exec-step-time{font-size:10px;color:var(--mu);margin-left:auto;flex-shrink:0}
+.exec-progress-wrap{padding:14px 20px;border-top:1px solid var(--b1);background:rgba(0,0,0,.15)}
+.exec-progress-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin-top:6px}
+.exec-progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--a1),var(--tl));transition:width .4s ease;width:0%}
+.exec-progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--mu)}
+.exec-result-box{margin:0 20px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:6px;padding:10px 12px;font-family:monospace;font-size:10.5px;max-height:100px;overflow-y:auto;color:var(--g);white-space:pre;line-height:1.5;display:none}
+.exec-footer{padding:12px 20px;border-top:1px solid var(--b1);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.exec-footer-info{font-size:10.5px;color:var(--mu)}
+
+/* PER-REPORT FORMAT PANEL */
+.fmt-panel{background:var(--s2);border:1px dashed var(--b1);border-radius:7px;padding:11px 14px;display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.fmt-panel-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);flex-shrink:0}
+.fmt-chip{
+  display:inline-flex;align-items:center;gap:5px;padding:5px 10px;
+  border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;
+  border:1px solid var(--b1);background:var(--s1);color:var(--mu2);
+  transition:all .14s;
+}
+.fmt-chip:hover{border-color:var(--a1);color:var(--a1)}
+.fmt-chip.sel{border-color:var(--a1);background:rgba(59,130,246,.12);color:var(--a1)}
+.fmt-chip-ico{font-size:13px}
+.last-exec{font-size:10px;color:var(--mu);display:flex;align-items:center;gap:5px;margin-left:auto}
+
+
+/* ── FORMAT DESIGNER ─────────────────────────────────── */
+.fd-grid{display:grid;grid-template-columns:300px 1fr;gap:14px;min-height:600px}
+.fd-list{background:var(--s1);border:1px solid var(--b1);border-radius:9px;overflow:hidden;display:flex;flex-direction:column}
+.fd-list-head{padding:11px 14px;border-bottom:1px solid var(--b1);font-family:'Syne',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+.fd-list-search{padding:8px 10px;border-bottom:1px solid var(--b1)}
+.fd-list-search input{background:var(--s2);border:1px solid var(--b1);color:var(--tx);border-radius:5px;padding:6px 10px;font-size:11px;font-family:'DM Sans',sans-serif;width:100%;outline:none}
+.fd-list-search input:focus{border-color:var(--a1)}
+.fd-rpt-item{display:flex;align-items:center;gap:9px;padding:9px 13px;cursor:pointer;border-left:2px solid transparent;transition:all .13s;font-size:11.5px;color:var(--mu2)}
+.fd-rpt-item:hover{background:rgba(255,255,255,.03);color:var(--tx)}
+.fd-rpt-item.act{background:rgba(249,115,22,.08);border-left-color:var(--or);color:var(--tx)}
+.fd-rpt-ico{font-size:14px;flex-shrink:0;width:18px;text-align:center}
+.fd-rpt-info{flex:1;min-width:0}
+.fd-rpt-name{font-weight:600;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fd-rpt-kra{font-size:9.5px;color:var(--mu)}
+.fd-rpt-badge{font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;flex-shrink:0}
+.fd-panel{background:var(--s1);border:1px solid var(--b1);border-radius:9px;overflow:hidden;display:flex;flex-direction:column}
+.fd-panel-tabs{display:flex;border-bottom:1px solid var(--b1);background:var(--s2);flex-shrink:0}
+.fd-tab{padding:10px 16px;font-size:11.5px;font-weight:600;color:var(--mu);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .13s;white-space:nowrap}
+.fd-tab:hover{color:var(--tx)}
+.fd-tab.act{color:var(--or);border-bottom-color:var(--or)}
+.fd-panel-body{flex:1;overflow-y:auto;padding:16px}
+.fd-panel-body::-webkit-scrollbar{width:4px}
+.fd-panel-body::-webkit-scrollbar-thumb{background:var(--b1)}
+
+/* Column builder */
+.col-builder{display:flex;flex-direction:column;gap:6px}
+.col-row{display:grid;grid-template-columns:28px 2fr 1fr 1fr 80px 80px 36px;gap:6px;align-items:center;background:var(--s2);border:1px solid var(--b1);border-radius:6px;padding:7px 10px;font-size:11px}
+.col-row.header-row{background:var(--bg);border-color:transparent;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);padding:4px 10px}
+.col-drag{color:var(--mu);cursor:grab;font-size:14px;text-align:center}
+.col-input{background:var(--bg);border:1px solid var(--b1);color:var(--tx);border-radius:4px;padding:4px 7px;font-size:11px;font-family:'DM Sans',sans-serif;width:100%;outline:none}
+.col-input:focus{border-color:var(--or)}
+.col-select{background:var(--bg);border:1px solid var(--b1);color:var(--tx);border-radius:4px;padding:4px 6px;font-size:11px;font-family:'DM Sans',sans-serif;width:100%;outline:none}
+.col-toggle-cell{display:flex;align-items:center;justify-content:center}
+.col-del{background:none;border:none;color:var(--mu);cursor:pointer;font-size:14px;padding:2px 5px;border-radius:3px}
+.col-del:hover{color:var(--r);background:rgba(239,68,68,.1)}
+
+/* Upload zone */
+.upload-zone{border:2px dashed var(--b1);border-radius:8px;padding:28px;text-align:center;cursor:pointer;transition:all .18s;position:relative}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--or);background:rgba(249,115,22,.04)}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-zone-ico{font-size:36px;margin-bottom:10px}
+.upload-zone-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px}
+.upload-zone-sub{font-size:11px;color:var(--mu2)}
+.upload-file-item{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--b1);border-radius:6px;padding:9px 12px;font-size:11.5px;margin-top:8px}
+.upload-file-ico{font-size:18px;flex-shrink:0}
+.upload-file-name{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.upload-file-size{font-size:10px;color:var(--mu);flex-shrink:0}
+.upload-file-del{background:none;border:none;color:var(--mu);cursor:pointer;font-size:14px;padding:2px 5px}
+.upload-file-del:hover{color:var(--r)}
+
+/* Style builder */
+.style-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.style-section{background:var(--s2);border:1px solid var(--b1);border-radius:7px;padding:12px}
+.style-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:8px}
+.color-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:11px}
+.color-swatch{width:24px;height:24px;border-radius:4px;border:1px solid var(--b1);cursor:pointer;flex-shrink:0}
+.color-lbl{flex:1;color:var(--mu2)}
+.style-preview{background:var(--bg);border:1px solid var(--b1);border-radius:6px;overflow:hidden;margin-top:8px}
+.preview-header{padding:8px 12px;font-size:11px;font-weight:700;border-bottom:1px solid var(--b1)}
+.preview-row{display:flex;padding:6px 12px;border-bottom:1px solid rgba(30,45,69,.4);font-size:10.5px;gap:8px}
+.preview-cell{flex:1;color:var(--mu2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.preview-cell.bold{font-weight:700;color:var(--tx)}
+
+/* Formula builder */
+.formula-row{display:flex;flex-direction:column;gap:5px;background:var(--s2);border:1px solid var(--b1);border-radius:6px;padding:10px 12px;margin-bottom:7px}
+.formula-name{font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.formula-expr{font-family:monospace;font-size:11px;color:var(--tl);background:var(--bg);padding:5px 9px;border-radius:4px;border:1px solid var(--b1)}
+
 </style>
 </head>
 <body>
@@ -294,6 +441,7 @@ select:focus,input:focus{border-color:var(--a1)}
   <div class="div"></div>
 
   <div class="grp-lbl">Data Integration</div>
+  <div class="ni" onclick="go('formatdesigner',this)" style="background:rgba(249,115,22,.07);border-left:2px solid var(--or)"><span class="ni-ico">🗂</span>Report Format Designer<span class="ni-badge" style="background:rgba(249,115,22,.2);color:var(--or)">22 Reports</span></div>
   <div class="ni" onclick="go('connectors',this)" style="background:rgba(20,184,166,.07);border-left:2px solid var(--tl)"><span class="ni-ico">🔌</span>API Connectors<span class="ni-badge" style="background:rgba(20,184,166,.2);color:var(--tl)">3 Live</span></div>
   <div style="height:12px"></div>
 </aside>
@@ -315,6 +463,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ KRA OVERVIEW ═══ -->
   <div id="pg-kra" class="pg act">
     <div class="sh"><div><div class="st">KRA Performance Overview · FEB 2026</div><div class="sd">HR Operations Head · 482 employees · 8 Key Result Areas</div></div><div class="sa"><span class="ktag kg">✓ 3 On Track</span><span class="ktag ka">⚠ 4 At Risk</span><span class="ktag kr">✕ 1 Critical</span></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-kra">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">KRA Overview Dashboard</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: All Systems &nbsp;·&nbsp; ALL</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'kra','xlsx')" id="fmt-kra-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'kra','pdf')" id="fmt-kra-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'kra','csv')" id="fmt-kra-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'kra','json')" id="fmt-kra-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'kra','both')" id="fmt-kra-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('kra','KRA Overview Dashboard','All Systems')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kra-grid" id="kra-cards"></div>
     <div class="g2">
       <div class="panel">
@@ -338,6 +506,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ MANPOWER ═══ -->
   <div id="pg-manpower" class="pg">
     <div class="sh"><div><div class="st">KRA-1 · Headcount vs Budget Gap</div><div class="sd">Sanctioned vs Actual vs Vacant · Location & Dept Wise</div></div><div class="sa"><span class="ktag ka">⚠ At Risk</span><button class="btn bg1" onclick="dlR('Headcount-Gap')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-manpower">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Headcount vs Budget Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: HRMS Employee Master &nbsp;·&nbsp; KRA-1</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'manpower','xlsx')" id="fmt-manpower-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'manpower','pdf')" id="fmt-manpower-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'manpower','csv')" id="fmt-manpower-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'manpower','json')" id="fmt-manpower-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'manpower','both')" id="fmt-manpower-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('manpower','Headcount vs Budget Report','HRMS Employee Master')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--a1)"><div class="kl">Sanctioned</div><div class="kv">540</div><div class="ks">Budget approved</div></div>
       <div class="kc" style="--col:var(--g)"><div class="kl">Actual Strength</div><div class="kv">482</div><div class="ks"><span class="up">89.3%</span> fill rate</div></div>
@@ -359,6 +547,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ ATTRITION ═══ -->
   <div id="pg-attrition" class="pg">
     <div class="sh"><div><div class="st">KRA-1 · Attrition Analysis</div><div class="sd">Voluntary vs Involuntary · Dept & Tenure Wise</div></div><div class="sa"><span class="ktag kr">✕ Critical — 8.2% (Target 6%)</span><button class="btn bg1" onclick="dlR('Attrition')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-attrition">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Attrition Analysis Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: HRMS Employee Master &nbsp;·&nbsp; KRA-1</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'attrition','xlsx')" id="fmt-attrition-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attrition','pdf')" id="fmt-attrition-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attrition','csv')" id="fmt-attrition-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attrition','json')" id="fmt-attrition-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attrition','both')" id="fmt-attrition-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('attrition','Attrition Analysis Report','HRMS Employee Master')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--r)"><div class="kl">Attrition Rate</div><div class="kv">8.2%</div><div class="ks"><span class="dn">+2.2% over target</span></div></div>
       <div class="kc" style="--col:var(--am)"><div class="kl">Total Exits (Feb)</div><div class="kv">39</div><div class="ks">Vol: 31 · Inv: 8</div></div>
@@ -380,6 +588,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ ATTENDANCE ═══ -->
   <div id="pg-attendance" class="pg">
     <div class="sh"><div><div class="st">KRA-2 · Attendance Gap Report</div><div class="sd">Source: ATTENDENCE-GAP-REPORT-2026-FEB-HO_CENTRAL.xlsb · 4 Sheets</div></div><div class="sa"><button class="btn bg1" onclick="dlR('Attendance-Gap')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-attendance">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Attendance Gap Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Biometric / Attendance &nbsp;·&nbsp; KRA-2</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'attendance','xlsx')" id="fmt-attendance-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attendance','pdf')" id="fmt-attendance-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attendance','csv')" id="fmt-attendance-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attendance','json')" id="fmt-attendance-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'attendance','both')" id="fmt-attendance-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('attendance','Attendance Gap Report','Biometric / Attendance')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--a1)"><div class="kl">Total Employees</div><div class="kv">482</div><div class="ks"><span class="up">+12</span> vs Jan</div></div>
       <div class="kc" style="--col:var(--g)"><div class="kl">Avg Present Days</div><div class="kv">23.4</div><div class="ks">of 29 working days</div></div>
@@ -397,6 +625,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ LATE COMING ═══ -->
   <div id="pg-latecomer" class="pg">
     <div class="sh"><div><div class="st">KRA-2 · Late Coming / Early Going</div><div class="sd">Shift Deviation Analysis · FEB 2026</div></div><div class="sa"><span class="ktag ka">⚠ 47 Chronic Offenders</span><button class="btn bg1" onclick="dlR('Late-Coming')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-latecomer">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Late Coming Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Biometric / Attendance &nbsp;·&nbsp; KRA-2</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'latecomer','xlsx')" id="fmt-latecomer-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'latecomer','pdf')" id="fmt-latecomer-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'latecomer','csv')" id="fmt-latecomer-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'latecomer','json')" id="fmt-latecomer-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'latecomer','both')" id="fmt-latecomer-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('latecomer','Late Coming Report','Biometric / Attendance')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--am)"><div class="kl">Late Instances</div><div class="kv">1,284</div><div class="ks">this month</div></div>
       <div class="kc" style="--col:var(--r)"><div class="kl">Chronic Offenders</div><div class="kv">47</div><div class="ks">&gt;5 late days</div></div>
@@ -418,6 +666,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ ABSENTEEISM ═══ -->
   <div id="pg-absenteeism" class="pg">
     <div class="sh"><div><div class="st">KRA-2 · Absenteeism Heatmap</div><div class="sd">Day-wise Pattern · All Locations · Feb 2026</div></div><div class="sa"><button class="btn bg1" onclick="dlR('Absenteeism')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-absenteeism">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Absenteeism Heatmap Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Biometric / Attendance &nbsp;·&nbsp; KRA-2</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'absenteeism','xlsx')" id="fmt-absenteeism-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'absenteeism','pdf')" id="fmt-absenteeism-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'absenteeism','csv')" id="fmt-absenteeism-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'absenteeism','json')" id="fmt-absenteeism-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'absenteeism','both')" id="fmt-absenteeism-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('absenteeism','Absenteeism Heatmap Report','Biometric / Attendance')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--r)"><div class="kl">Total Absent Instances</div><div class="kv">1,847</div></div>
       <div class="kc" style="--col:var(--am)"><div class="kl">Avg Absent Days/Emp</div><div class="kv">3.8</div><div class="ks">vs 2.5 target</div></div>
@@ -437,6 +705,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ OVERTIME ═══ -->
   <div id="pg-overtime" class="pg">
     <div class="sh"><div><div class="st">KRA-2 · Overtime Analysis</div><div class="sd">OT Hours · Cost · Dept Wise · FEB 2026</div></div><div class="sa"><button class="btn bg1" onclick="dlR('OT-Analysis')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-overtime">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Overtime Analysis Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Biometric / Attendance &nbsp;·&nbsp; KRA-2</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'overtime','xlsx')" id="fmt-overtime-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'overtime','pdf')" id="fmt-overtime-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'overtime','csv')" id="fmt-overtime-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'overtime','json')" id="fmt-overtime-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'overtime','both')" id="fmt-overtime-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('overtime','Overtime Analysis Report','Biometric / Attendance')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--or)"><div class="kl">Total OT Hours</div><div class="kv">2,847</div></div>
       <div class="kc" style="--col:var(--am)"><div class="kl">OT Cost</div><div class="kv">₹4.1L</div><div class="ks"><span class="dn">+₹0.6L</span></div></div>
@@ -449,6 +737,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ SALARY ═══ -->
   <div id="pg-salary" class="pg">
     <div class="sh"><div><div class="st">KRA-3 · Salary Format</div><div class="sd">Source: SALARY_FORMAT.xlsb · F&F · NAPS-PROV · Algo · Feb Format</div></div><div class="sa"><button class="btn bg1" onclick="dlR('Salary-Format')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-salary">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Salary Format Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Payroll XLSB Files &nbsp;·&nbsp; KRA-3</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'salary','xlsx')" id="fmt-salary-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'salary','pdf')" id="fmt-salary-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'salary','csv')" id="fmt-salary-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'salary','json')" id="fmt-salary-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'salary','both')" id="fmt-salary-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('salary','Salary Format Report','Payroll XLSB Files')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--g)"><div class="kl">Gross Payable</div><div class="kv">₹2.14Cr</div><div class="ks"><span class="up">+₹0.08Cr</span></div></div>
       <div class="kc" style="--col:var(--a1)"><div class="kl">Net Payable</div><div class="kv">₹1.71Cr</div></div>
@@ -466,6 +774,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ CTC GAP ═══ -->
   <div id="pg-ctcgap" class="pg">
     <div class="sh"><div><div class="st">KRA-3 · CTC vs Actual Salary Gap</div><div class="sd">Offered CTC vs Monthly Actual Paid · Variance Analysis</div></div><div class="sa"><span class="ktag kr">✕ 28 Critical Gaps &gt;10%</span><button class="btn bg1" onclick="dlR('CTC-Gap')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-ctcgap">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">CTC vs Actual Gap Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Payroll + HRMS &nbsp;·&nbsp; KRA-3</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'ctcgap','xlsx')" id="fmt-ctcgap-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'ctcgap','pdf')" id="fmt-ctcgap-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'ctcgap','csv')" id="fmt-ctcgap-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'ctcgap','json')" id="fmt-ctcgap-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'ctcgap','both')" id="fmt-ctcgap-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('ctcgap','CTC vs Actual Gap Report','Payroll + HRMS')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--a1)"><div class="kl">Total CTC Budget</div><div class="kv">₹2.31Cr</div></div>
       <div class="kc" style="--col:var(--g)"><div class="kl">Actual Paid</div><div class="kv">₹2.14Cr</div></div>
@@ -487,6 +815,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ INCREMENT ═══ -->
   <div id="pg-increment" class="pg">
     <div class="sh"><div><div class="st">KRA-3 · Increment Due Tracker</div><div class="sd">Annual Increment Calendar · Pending · Processed</div></div><div class="sa"><span class="ktag ka">⚠ 31 Pending</span><button class="btn bg1" onclick="dlR('Increment')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-increment">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Increment Due Tracker</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: HRMS + Payroll &nbsp;·&nbsp; KRA-3</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'increment','xlsx')" id="fmt-increment-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'increment','pdf')" id="fmt-increment-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'increment','csv')" id="fmt-increment-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'increment','json')" id="fmt-increment-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'increment','both')" id="fmt-increment-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('increment','Increment Due Tracker','HRMS + Payroll')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--am)"><div class="kl">Due This Month</div><div class="kv">31</div></div>
       <div class="kc" style="--col:var(--g)"><div class="kl">Processed YTD</div><div class="kv">284</div></div>
@@ -502,6 +850,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ DEDUCTION ═══ -->
   <div id="pg-deduction" class="pg">
     <div class="sh"><div><div class="st">KRA-3 · Deduction Register</div><div class="sd">Source: DEDUCTION-FEB-MONTH-SALARY-2026-02.xlsb · 3 Sheets</div></div><div class="sa"><button class="btn bg1" onclick="dlR('Deduction')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-deduction">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Deduction Register</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Payroll XLSB Files &nbsp;·&nbsp; KRA-3</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'deduction','xlsx')" id="fmt-deduction-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'deduction','pdf')" id="fmt-deduction-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'deduction','csv')" id="fmt-deduction-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'deduction','json')" id="fmt-deduction-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'deduction','both')" id="fmt-deduction-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('deduction','Deduction Register','Payroll XLSB Files')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--a1)"><div class="kl">PF (Employee)</div><div class="kv">₹14.2L</div></div>
       <div class="kc" style="--col:var(--tl)"><div class="kl">ESI (Employee)</div><div class="kv">₹3.8L</div></div>
@@ -519,6 +887,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ PF ESI ═══ -->
   <div id="pg-pfesi" class="pg">
     <div class="sh"><div><div class="st">KRA-4 · PF / ESI Compliance Status</div><div class="sd">Filing Calendar · Challan Status · FEB 2026</div></div><div class="sa"><span class="ktag kg">✓ On Track</span></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-pfesi">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">PF / ESI Compliance Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Payroll + Tally ERP &nbsp;·&nbsp; KRA-4</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'pfesi','xlsx')" id="fmt-pfesi-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pfesi','pdf')" id="fmt-pfesi-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pfesi','csv')" id="fmt-pfesi-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pfesi','json')" id="fmt-pfesi-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pfesi','both')" id="fmt-pfesi-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('pfesi','PF / ESI Compliance Report','Payroll + Tally ERP')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--g)"><div class="kl">PF Challan (Feb)</div><div class="kv" style="font-size:16px">Filed ✓</div><div class="ks">Filed: 12 Mar · Due: 15 Mar</div></div>
       <div class="kc" style="--col:var(--g)"><div class="kl">ESI Challan (Feb)</div><div class="kv" style="font-size:16px">Filed ✓</div><div class="ks">Filed: 13 Mar</div></div>
@@ -536,6 +924,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ GRATUITY ═══ -->
   <div id="pg-gratuity" class="pg">
     <div class="sh"><div><div class="st">KRA-4 · Gratuity Liability Report</div><div class="sd">Accrued to Date · Exit Payable · FEB 2026</div></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-gratuity">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Gratuity Liability Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Payroll + HRMS &nbsp;·&nbsp; KRA-4</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'gratuity','xlsx')" id="fmt-gratuity-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'gratuity','pdf')" id="fmt-gratuity-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'gratuity','csv')" id="fmt-gratuity-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'gratuity','json')" id="fmt-gratuity-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'gratuity','both')" id="fmt-gratuity-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('gratuity','Gratuity Liability Report','Payroll + HRMS')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--a1)"><div class="kl">Total Liability</div><div class="kv">₹1.87Cr</div><div class="ks">accrued to date</div></div>
       <div class="kc" style="--col:var(--am)"><div class="kl">Eligible (&gt;5 yrs)</div><div class="kv">198</div></div>
@@ -547,6 +955,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ CONTRACT COMP ═══ -->
   <div id="pg-contractcomp" class="pg">
     <div class="sh"><div><div class="st">KRA-4 · Contract Labour Compliance</div></div><div class="sa"><span class="ktag kr">✕ 2 Licences Expiring!</span></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-contractcomp">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Contract Labour Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: HRMS + Compliance DB &nbsp;·&nbsp; KRA-4</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'contractcomp','xlsx')" id="fmt-contractcomp-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'contractcomp','pdf')" id="fmt-contractcomp-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'contractcomp','csv')" id="fmt-contractcomp-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'contractcomp','json')" id="fmt-contractcomp-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'contractcomp','both')" id="fmt-contractcomp-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('contractcomp','Contract Labour Report','HRMS + Compliance DB')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--r)"><div class="kl">Expiring in 30 Days</div><div class="kv">2</div><div class="ks">Pune & Chennai</div></div>
       <div class="kc" style="--col:var(--g)"><div class="kl">Active Contracts</div><div class="kv">14</div></div>
@@ -558,6 +986,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ TAT ═══ -->
   <div id="pg-tat" class="pg">
     <div class="sh"><div><div class="st">KRA-5 · Recruitment TAT Report</div><div class="sd">Time-to-Fill · Source of Hire · Pipeline Efficiency</div></div><div class="sa"><span class="ktag ka">⚠ 38 Days Avg (Target: 30D)</span><button class="btn bg1" onclick="dlR('Recruitment-TAT')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-tat">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Recruitment TAT Report</div>
+          <div class="exec-source"><div class="exec-source-dot err"></div>Source: Recruitment ATS &nbsp;·&nbsp; KRA-5</div>
+        </div>
+        <span class="exec-badge err">Auth Error</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'tat','xlsx')" id="fmt-tat-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'tat','pdf')" id="fmt-tat-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'tat','csv')" id="fmt-tat-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'tat','json')" id="fmt-tat-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'tat','both')" id="fmt-tat-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('tat','Recruitment TAT Report','Recruitment ATS')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--am)"><div class="kl">Avg Time-to-Fill</div><div class="kv">38 days</div><div class="ks"><span class="dn">+8 over target</span></div></div>
       <div class="kc" style="--col:var(--a1)"><div class="kl">Open Positions</div><div class="kv">58</div></div>
@@ -575,6 +1023,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ OFFER JOIN ═══ -->
   <div id="pg-offerjoin" class="pg">
     <div class="sh"><div><div class="st">KRA-5 · Offer-to-Join Ratio</div></div><div class="sa"><span class="ktag ka">⚠ 66% vs 80% Target</span></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-offerjoin">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Offer-to-Join Ratio Report</div>
+          <div class="exec-source"><div class="exec-source-dot off"></div>Source: Recruitment ATS &nbsp;·&nbsp; KRA-5</div>
+        </div>
+        <span class="exec-badge pending">Pending</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'offerjoin','xlsx')" id="fmt-offerjoin-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'offerjoin','pdf')" id="fmt-offerjoin-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'offerjoin','csv')" id="fmt-offerjoin-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'offerjoin','json')" id="fmt-offerjoin-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'offerjoin','both')" id="fmt-offerjoin-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('offerjoin','Offer-to-Join Ratio Report','Recruitment ATS')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--am)"><div class="kl">Offer-Join Ratio</div><div class="kv">66%</div></div>
       <div class="kc" style="--col:var(--a1)"><div class="kl">Offers Made</div><div class="kv">41</div></div>
@@ -586,6 +1054,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ PROBATION ═══ -->
   <div id="pg-probation" class="pg">
     <div class="sh"><div><div class="st">KRA-6 · Probation Confirmation Due</div><div class="sd">90-Day Review Tracker · Overdue Cases</div></div><div class="sa"><span class="ktag kr">✕ 14 Overdue</span><button class="btn bg1" onclick="dlR('Probation')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-probation">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Probation Due Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: HRMS Employee Master &nbsp;·&nbsp; KRA-6</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'probation','xlsx')" id="fmt-probation-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'probation','pdf')" id="fmt-probation-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'probation','csv')" id="fmt-probation-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'probation','json')" id="fmt-probation-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'probation','both')" id="fmt-probation-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('probation','Probation Due Report','HRMS Employee Master')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--r)"><div class="kl">Overdue Confirmations</div><div class="kv">14</div></div>
       <div class="kc" style="--col:var(--am)"><div class="kl">Due Next Month</div><div class="kv">9</div></div>
@@ -601,6 +1089,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ NOTICE ═══ -->
   <div id="pg-notice" class="pg">
     <div class="sh"><div><div class="st">KRA-6 · Notice Period Tracker</div></div><div class="sa"><button class="btn bg1" onclick="dlR('Notice-Period')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-notice">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Notice Period Tracker</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: HRMS Employee Master &nbsp;·&nbsp; KRA-6</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'notice','xlsx')" id="fmt-notice-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'notice','pdf')" id="fmt-notice-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'notice','csv')" id="fmt-notice-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'notice','json')" id="fmt-notice-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'notice','both')" id="fmt-notice-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('notice','Notice Period Tracker','HRMS Employee Master')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--a1)"><div class="kl">Active Notices</div><div class="kv">9</div></div>
       <div class="kc" style="--col:var(--am)"><div class="kl">Buyout Cases</div><div class="kv">4</div></div>
@@ -616,6 +1124,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ F&F ═══ -->
   <div id="pg-fnf" class="pg">
     <div class="sh"><div><div class="st">KRA-6 · Full &amp; Final Settlement</div></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-fnf">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">F&F Settlement Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Payroll + HRMS &nbsp;·&nbsp; KRA-6</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'fnf','xlsx')" id="fmt-fnf-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'fnf','pdf')" id="fmt-fnf-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'fnf','csv')" id="fmt-fnf-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'fnf','json')" id="fmt-fnf-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'fnf','both')" id="fmt-fnf-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('fnf','F&F Settlement Report','Payroll + HRMS')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--am)"><div class="kl">F&F Pending</div><div class="kv">14</div></div>
       <div class="kc" style="--col:var(--g)"><div class="kl">Processed</div><div class="kv">25</div></div>
@@ -627,6 +1155,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ TRAINING ═══ -->
   <div id="pg-training" class="pg">
     <div class="sh"><div><div class="st">KRA-7 · Training Completion</div><div class="sd">Mandatory & Optional · Hours Tracking · FEB 2026</div></div><div class="sa"><span class="ktag ka">⚠ 64% vs 80% Target</span><button class="btn bg1" onclick="dlR('Training')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-training">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Training Completion Report</div>
+          <div class="exec-source"><div class="exec-source-dot off"></div>Source: Training LMS &nbsp;·&nbsp; KRA-7</div>
+        </div>
+        <span class="exec-badge pending">Pending</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'training','xlsx')" id="fmt-training-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'training','pdf')" id="fmt-training-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'training','csv')" id="fmt-training-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'training','json')" id="fmt-training-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'training','both')" id="fmt-training-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('training','Training Completion Report','Training LMS')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--am)"><div class="kl">Completion Rate</div><div class="kv">64%</div><div class="ks"><span class="dn">–16% vs target</span></div></div>
       <div class="kc" style="--col:var(--a1)"><div class="kl">Hours/Employee</div><div class="kv">4.2 hrs</div><div class="ks">vs 6hr target</div></div>
@@ -646,6 +1194,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ SKILL GAP ═══ -->
   <div id="pg-skillgap" class="pg">
     <div class="sh"><div><div class="st">KRA-7 · Skill Gap Analysis</div><div class="sd">Required vs Current Skill Levels · Dept-wise</div></div><div class="sa"><span class="ktag kr">✕ Critical Gaps: IT & Ops</span></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-skillgap">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Skill Gap Analysis Report</div>
+          <div class="exec-source"><div class="exec-source-dot off"></div>Source: Training LMS + HRMS &nbsp;·&nbsp; KRA-7</div>
+        </div>
+        <span class="exec-badge pending">Pending</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'skillgap','xlsx')" id="fmt-skillgap-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'skillgap','pdf')" id="fmt-skillgap-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'skillgap','csv')" id="fmt-skillgap-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'skillgap','json')" id="fmt-skillgap-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'skillgap','both')" id="fmt-skillgap-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('skillgap','Skill Gap Analysis Report','Training LMS + HRMS')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--r)"><div class="kl">Critical Gaps</div><div class="kv">14</div></div>
       <div class="kc" style="--col:var(--am)"><div class="kl">Moderate Gaps</div><div class="kv">38</div></div>
@@ -665,6 +1233,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ PMS ═══ -->
   <div id="pg-pms" class="pg">
     <div class="sh"><div><div class="st">KRA-8 · PMS &amp; Appraisal Status</div><div class="sd">Annual Review · Stage Completion · Rating Distribution</div></div><div class="sa"><span class="ktag ka">⚠ 58% Completed</span><button class="btn bg1" onclick="dlR('PMS-Status')">⬇ Export</button></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-pms">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">PMS Appraisal Status Report</div>
+          <div class="exec-source"><div class="exec-source-dot off"></div>Source: PMS / Appraisal Tool &nbsp;·&nbsp; KRA-8</div>
+        </div>
+        <span class="exec-badge pending">Pending</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'pms','xlsx')" id="fmt-pms-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pms','pdf')" id="fmt-pms-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pms','csv')" id="fmt-pms-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pms','json')" id="fmt-pms-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'pms','both')" id="fmt-pms-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('pms','PMS Appraisal Status Report','PMS / Appraisal Tool')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
     <div class="kg2">
       <div class="kc" style="--col:var(--am)"><div class="kl">Appraisal Done</div><div class="kv">58%</div><div class="ks">280 of 482</div></div>
       <div class="kc" style="--col:var(--r)"><div class="kl">Self Appraisal Pending</div><div class="kv">124</div></div>
@@ -688,6 +1276,26 @@ select:focus,input:focus{border-color:var(--a1)}
     <div class="sh">
       <div><div class="st">⏰ Report Scheduler</div><div class="sd">Automate KRA report delivery · Email scheduling · Format control · FEB 2026</div></div>
       <div class="sa"><span style="font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(99,102,241,.12);color:var(--a2);font-weight:700">5 Active Schedules</span></div>
+    </div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-scheduler">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Scheduler Status Report</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: Internal Scheduler &nbsp;·&nbsp; ALL</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'scheduler','xlsx')" id="fmt-scheduler-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'scheduler','pdf')" id="fmt-scheduler-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'scheduler','csv')" id="fmt-scheduler-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'scheduler','json')" id="fmt-scheduler-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'scheduler','both')" id="fmt-scheduler-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('scheduler','Scheduler Status Report','Internal Scheduler')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
     </div>
 
     <!-- Stats row -->
@@ -807,6 +1415,26 @@ select:focus,input:focus{border-color:var(--a1)}
   <!-- ═══ HOST GUIDE ═══ -->
   <div id="pg-hostguide" class="pg">
     <div class="sh"><div><div class="st">🌐 Host & Deploy — Your Live URL</div><div class="sd">Repository: V2-Application / HR-KRA-Dashboard · GitHub Pages</div></div></div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-hostguide">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">Deploy Guide</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: N/A &nbsp;·&nbsp; N/A</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'hostguide','xlsx')" id="fmt-hostguide-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'hostguide','pdf')" id="fmt-hostguide-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'hostguide','csv')" id="fmt-hostguide-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'hostguide','json')" id="fmt-hostguide-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'hostguide','both')" id="fmt-hostguide-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('hostguide','Deploy Guide','N/A')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
 
     <!-- LIVE URL HERO -->
     <div class="panel" style="border-color:var(--g);background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(59,130,246,.04))">
@@ -936,6 +1564,26 @@ select:focus,input:focus{border-color:var(--a1)}
         <button class="btn bp" onclick="showAddConn()">➕ Add Custom API</button>
       </div>
     </div>
+    <!-- EXECUTE BAR -->
+    <div class="exec-bar" id="execbar-connectors">
+      <div class="exec-bar-left">
+        <div>
+          <div class="exec-title">API Connection Test</div>
+          <div class="exec-source"><div class="exec-source-dot"></div>Source: All API Endpoints &nbsp;·&nbsp; ALL</div>
+        </div>
+        <span class="exec-badge">Live</span>
+      </div>
+      <div class="exec-bar-right">
+        <div class="fmt-chip sel" onclick="selFmt(this,'connectors','xlsx')" id="fmt-connectors-xlsx"><span class="fmt-chip-ico">📊</span>Excel</div>
+        <div class="fmt-chip" onclick="selFmt(this,'connectors','pdf')" id="fmt-connectors-pdf"><span class="fmt-chip-ico">📄</span>PDF</div>
+        <div class="fmt-chip" onclick="selFmt(this,'connectors','csv')" id="fmt-connectors-csv"><span class="fmt-chip-ico">📑</span>CSV</div>
+        <div class="fmt-chip" onclick="selFmt(this,'connectors','json')" id="fmt-connectors-json"><span class="fmt-chip-ico">🔗</span>JSON</div>
+        <div class="fmt-chip" onclick="selFmt(this,'connectors','both')" id="fmt-connectors-both"><span class="fmt-chip-ico">📦</span>All</div>
+        <button class="btn-exec" onclick="execReport('connectors','API Connection Test','All API Endpoints')">
+          <span class="btn-exec-ico">⚡</span> Execute &amp; Fetch
+        </button>
+      </div>
+    </div>
 
     <!-- STATUS STRIP -->
     <div class="panel" style="border-color:var(--tl)">
@@ -1001,6 +1649,215 @@ select:focus,input:focus{border-color:var(--a1)}
         </table>
       </div>
     </div>
+  </div>
+
+
+  <!-- ═══ REPORT FORMAT DESIGNER ═══ -->
+  <div id="pg-formatdesigner" class="pg">
+    <div class="sh">
+      <div><div class="st">🗂 Report Format Designer</div><div class="sd">Define columns, upload templates, set styles & formulas for each report module</div></div>
+      <div class="sa">
+        <button class="btn bg1" onclick="fdSaveAll()">💾 Save All Formats</button>
+        <button class="btn bg1" onclick="fdExportConfig()">📤 Export Config</button>
+        <button class="btn" style="background:var(--or);color:#fff" onclick="fdApplyAll()">✅ Apply to All Reports</button>
+      </div>
+    </div>
+
+    <!-- EXECUTE BAR injected by script -->
+
+    <div class="fd-grid">
+      <!-- LEFT: Report List -->
+      <div class="fd-list">
+        <div class="fd-list-head">
+          <span>📋 All Reports</span>
+          <span style="font-size:10px;color:var(--mu);font-weight:400" id="fd-saved-count">0 formats saved</span>
+        </div>
+        <div class="fd-list-search">
+          <input type="text" placeholder="🔍 Search reports..." oninput="fdFilterList(this.value)" id="fd-search">
+        </div>
+        <div style="overflow-y:auto;flex:1;scrollbar-width:none" id="fd-report-list"></div>
+      </div>
+
+      <!-- RIGHT: Designer Panel -->
+      <div class="fd-panel">
+        <div class="fd-panel-tabs">
+          <div class="fd-tab act" onclick="fdSwitchTab('columns',this)">📐 Columns</div>
+          <div class="fd-tab" onclick="fdSwitchTab('upload',this)">📁 Upload Template</div>
+          <div class="fd-tab" onclick="fdSwitchTab('style',this)">🎨 Style & Branding</div>
+          <div class="fd-tab" onclick="fdSwitchTab('formulas',this)">🧮 Formulas</div>
+          <div class="fd-tab" onclick="fdSwitchTab('preview',this)">👁 Preview</div>
+          <div class="fd-tab" onclick="fdSwitchTab('output',this)">📤 Output Settings</div>
+        </div>
+
+        <!-- COLUMNS TAB -->
+        <div class="fd-panel-body" id="fd-tab-columns">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700" id="fd-active-name">Select a report →</div>
+              <div style="font-size:10.5px;color:var(--mu)" id="fd-active-kra">Choose from the list on the left</div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button class="btn bg1" onclick="fdAddCol()" style="font-size:11px">+ Add Column</button>
+              <button class="btn bg1" onclick="fdLoadDefault()" style="font-size:11px">↺ Load Default</button>
+              <button class="btn bg1" onclick="fdClearAll()" style="font-size:11px;color:var(--r);border-color:var(--r)">🗑 Clear All</button>
+            </div>
+          </div>
+          <div class="col-builder">
+            <div class="col-row header-row">
+              <div>#</div><div>Column Name</div><div>Data Type</div>
+              <div>Width</div><div>Visible</div><div>Freeze</div><div></div>
+            </div>
+            <div id="fd-col-list"></div>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="btn bg1" style="font-size:11px" onclick="fdAddCol()">+ Add Column</button>
+            <button class="btn" style="background:var(--or);color:#fff;font-size:11px" onclick="fdSaveCols()">💾 Save Columns</button>
+          </div>
+        </div>
+
+        <!-- UPLOAD TAB -->
+        <div class="fd-panel-body" id="fd-tab-upload" style="display:none">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:10px">Upload Template File for: <span id="fd-upload-rpt-name" style="color:var(--or)">Select a report first</span></div>
+          <div class="upload-zone" id="upload-zone" ondragover="this.classList.add('drag')" ondragleave="this.classList.remove('drag')">
+            <input type="file" accept=".xlsx,.xls,.csv,.pdf,.xlsb" onchange="handleFileUpload(this)">
+            <div class="upload-zone-ico">📁</div>
+            <div class="upload-zone-title">Drop your template file here</div>
+            <div class="upload-zone-sub">Supports .xlsx · .xlsb · .csv · .pdf · .xls<br>Claude will read the column structure automatically</div>
+          </div>
+          <div id="uploaded-files-list" style="margin-top:4px"></div>
+          <div style="margin-top:14px;background:var(--s2);border:1px solid var(--b1);border-radius:7px;padding:12px">
+            <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:8px">📂 Already Uploaded Templates</div>
+            <div id="fd-existing-templates"></div>
+          </div>
+        </div>
+
+        <!-- STYLE TAB -->
+        <div class="fd-panel-body" id="fd-tab-style" style="display:none">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:12px">Style &amp; Branding for: <span id="fd-style-rpt-name" style="color:var(--or)">Select a report first</span></div>
+          <div class="style-grid">
+            <div class="style-section">
+              <div class="style-lbl">Header Colors</div>
+              <div class="color-row"><div class="color-swatch" style="background:#1e3a5f" onclick="pickColor(this,'header-bg')"></div><div class="color-lbl">Header Background</div><input type="color" value="#1e3a5f" oninput="this.previousElementSibling.previousElementSibling.style.background=this.value" style="width:32px;height:24px;border:none;background:none;cursor:pointer"></div>
+              <div class="color-row"><div class="color-swatch" style="background:#ffffff"></div><div class="color-lbl">Header Text Color</div><input type="color" value="#ffffff" oninput="this.previousElementSibling.previousElementSibling.style.background=this.value" style="width:32px;height:24px;border:none;background:none;cursor:pointer"></div>
+              <div class="color-row"><div class="color-swatch" style="background:#e8f0fe"></div><div class="color-lbl">Alternate Row Color</div><input type="color" value="#e8f0fe" oninput="this.previousElementSibling.previousElementSibling.style.background=this.value" style="width:32px;height:24px;border:none;background:none;cursor:pointer"></div>
+              <div class="color-row"><div class="color-swatch" style="background:#ff4444"></div><div class="color-lbl">Alert / Warning Color</div><input type="color" value="#ff4444" oninput="this.previousElementSibling.previousElementSibling.style.background=this.value" style="width:32px;height:24px;border:none;background:none;cursor:pointer"></div>
+            </div>
+            <div class="style-section">
+              <div class="style-lbl">Typography</div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Header Font Size</div><select class="col-select"><option>10pt</option><option selected>11pt</option><option>12pt</option><option>14pt</option></select></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Body Font Size</div><select class="col-select"><option>9pt</option><option selected>10pt</option><option>11pt</option></select></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Font Family</div><select class="col-select"><option>Calibri</option><option selected>Arial</option><option>Times New Roman</option><option>Verdana</option></select></div>
+              <div class="fg"><div class="conn-lbl">Number Format</div><select class="col-select"><option>Indian (₹1,00,000)</option><option>International ($100,000)</option><option>Plain (100000)</option></select></div>
+            </div>
+            <div class="style-section">
+              <div class="style-lbl">Page Setup</div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Paper Size</div><select class="col-select"><option selected>A4</option><option>A3</option><option>Letter</option></select></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Orientation</div><select class="col-select"><option selected>Landscape</option><option>Portrait</option></select></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Margins</div><select class="col-select"><option>Narrow (0.5")</option><option selected>Normal (1")</option><option>Wide (1.5")</option></select></div>
+              <div class="fg"><div class="conn-lbl">Freeze Panes</div><select class="col-select"><option selected>First Row + First Col</option><option>First Row Only</option><option>None</option></select></div>
+            </div>
+            <div class="style-section">
+              <div class="style-lbl">Header / Footer</div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Report Title</div><input class="col-input" type="text" placeholder="HR KRA Dashboard - FEB 2026" id="style-title"></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Company Name</div><input class="col-input" type="text" placeholder="V2-Application · HO Central" id="style-company"></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Footer Text</div><input class="col-input" type="text" placeholder="Confidential | HR Operations Head" id="style-footer"></div>
+              <div class="fg"><div class="conn-lbl">Include Logo</div><select class="col-select"><option>No Logo</option><option selected>Company Logo (top-left)</option><option>Company Logo (center)</option></select></div>
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <div class="style-lbl">Live Preview</div>
+            <div class="style-preview">
+              <div class="preview-header" style="background:#1e3a5f;color:#fff" id="preview-header-row">SR NO. | EMP CODE | NAME | DEPARTMENT | DESIGNATION | PAYABLE DAYS | GROSS | NET PAY</div>
+              <div class="preview-row" style="background:#e8f0fe10"><div class="preview-cell bold">001</div><div class="preview-cell bold">EMP1001</div><div class="preview-cell bold">Rahul Sharma</div><div class="preview-cell">Operations</div><div class="preview-cell">Sr. Manager</div><div class="preview-cell">24</div><div class="preview-cell">Rs.85,000</div><div class="preview-cell bold" style="color:var(--g)">Rs.71,200</div></div>
+              <div class="preview-row"><div class="preview-cell bold">002</div><div class="preview-cell bold">EMP1002</div><div class="preview-cell bold">Priya Verma</div><div class="preview-cell">Finance</div><div class="preview-cell">Manager</div><div class="preview-cell">26</div><div class="preview-cell">Rs.62,000</div><div class="preview-cell bold" style="color:var(--g)">Rs.52,400</div></div>
+              <div class="preview-row" style="background:#e8f0fe10"><div class="preview-cell bold">003</div><div class="preview-cell bold">EMP1003</div><div class="preview-cell bold">Amit Singh</div><div class="preview-cell">IT</div><div class="preview-cell">Executive</div><div class="preview-cell">22</div><div class="preview-cell">Rs.45,000</div><div class="preview-cell bold" style="color:var(--am)">Rs.36,900</div></div>
+            </div>
+          </div>
+          <button class="btn" style="background:var(--or);color:#fff;font-size:11px;margin-top:10px" onclick="fdSaveStyle()">💾 Save Style</button>
+        </div>
+
+        <!-- FORMULAS TAB -->
+        <div class="fd-panel-body" id="fd-tab-formulas" style="display:none">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:10px">Calculated Columns for: <span id="fd-formula-rpt-name" style="color:var(--or)">Select a report first</span></div>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <button class="btn bg1" style="font-size:11px" onclick="fdAddFormula()">+ Add Formula</button>
+            <button class="btn bg1" style="font-size:11px" onclick="fdLoadDefaultFormulas()">↺ Load Defaults</button>
+          </div>
+          <div id="fd-formula-list"></div>
+          <div style="margin-top:14px;background:var(--s2);border:1px solid var(--b1);border-radius:7px;padding:12px">
+            <div style="font-size:10.5px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Available Variables</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:10.5px">
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{basic}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{hra}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{gross}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{payable_days}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{total_days}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{pf}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{esi}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{tds}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{absent}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{ctc}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{joining_date}</span>
+              <span style="background:var(--bg);border:1px solid var(--b1);padding:3px 8px;border-radius:4px;font-family:monospace;color:var(--tl)">{department}</span>
+            </div>
+          </div>
+          <button class="btn" style="background:var(--or);color:#fff;font-size:11px;margin-top:10px" onclick="fdSaveFormulas()">💾 Save Formulas</button>
+        </div>
+
+        <!-- PREVIEW TAB -->
+        <div class="fd-panel-body" id="fd-tab-preview" style="display:none">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+            <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700">Live Preview: <span id="fd-preview-rpt-name" style="color:var(--or)">Select a report first</span></div>
+            <div style="display:flex;gap:6px">
+              <select class="fmt-select"><option>Excel Preview</option><option>PDF Preview</option><option>CSV Preview</option></select>
+              <button class="btn bg1" style="font-size:11px" onclick="fdRefreshPreview()">🔄 Refresh</button>
+            </div>
+          </div>
+          <div id="fd-preview-table" style="overflow-x:auto">
+            <div style="color:var(--mu);font-size:12px;text-align:center;padding:40px">👈 Select a report and configure its columns to see a preview here</div>
+          </div>
+        </div>
+
+        <!-- OUTPUT SETTINGS TAB -->
+        <div class="fd-panel-body" id="fd-tab-output" style="display:none">
+          <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:12px">Output Settings for: <span id="fd-output-rpt-name" style="color:var(--or)">Select a report first</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="style-section">
+              <div class="style-lbl">Primary Format</div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Default Output Format</div><select class="col-select" id="out-fmt"><option selected>Excel (.xlsx)</option><option>PDF</option><option>CSV</option><option>JSON</option><option>Excel + PDF Bundle</option></select></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Excel Sheet Name</div><input class="col-input" type="text" placeholder="FEB-2026-REPORT" id="out-sheet"></div>
+              <div class="fg"><div class="conn-lbl">File Name Pattern</div><input class="col-input" type="text" placeholder="{report_name}_{month}_{year}" id="out-filename"></div>
+            </div>
+            <div class="style-section">
+              <div class="style-lbl">Data Options</div>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:11.5px">
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> Include Summary Row (Totals)</label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> Include Header Row</label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox"> Include Serial Numbers</label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> Auto-filter Enabled</label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> Freeze Header Row</label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox"> Conditional Formatting</label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> Password Protect File</label>
+              </div>
+            </div>
+            <div class="style-section">
+              <div class="style-lbl">Delivery Options</div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Send via Email</div><input class="col-input" type="text" placeholder="hr.head@company.com"></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Save to Location</div><select class="col-select"><option>Download Only</option><option>Google Drive</option><option>SharePoint</option><option>Email + Download</option></select></div>
+              <div class="fg"><div class="conn-lbl">Retention Period</div><select class="col-select"><option>30 days</option><option selected>90 days</option><option>1 year</option><option>Forever</option></select></div>
+            </div>
+            <div class="style-section">
+              <div class="style-lbl">Advanced</div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Sort By</div><select class="col-select"><option>Location</option><option>Department</option><option selected>Employee Code</option><option>Name</option></select></div>
+              <div class="fg" style="margin-bottom:7px"><div class="conn-lbl">Group By</div><select class="col-select"><option selected>None</option><option>Department</option><option>Location</option><option>Designation</option></select></div>
+              <div class="fg"><div class="conn-lbl">Max Rows per Sheet</div><select class="col-select"><option>1,000</option><option selected>5,000</option><option>10,000</option><option>Unlimited</option></select></div>
+            </div>
+          </div>
+          <button class="btn" style="background:var(--or);color:#fff;font-size:11px;margin-top:12px" onclick="fdSaveOutput()">💾 Save Output Settings</button>
+        </div>
+
+      </div><!-- /fd-panel -->
+    </div><!-- /fd-grid -->
   </div>
 
   </div><!-- /content -->
@@ -1191,7 +2048,7 @@ function renderCharts(){
 }
 
 // NAVIGATION
-const PAGE_TITLES={kra:'KRA Overview',manpower:'KRA-1 · Headcount vs Budget Gap',attrition:'KRA-1 · Attrition Analysis',attendance:'KRA-2 · Attendance Gap Report',latecomer:'KRA-2 · Late Coming / Early Going',absenteeism:'KRA-2 · Absenteeism Heatmap',overtime:'KRA-2 · Overtime Analysis',salary:'KRA-3 · Salary Format',ctcgap:'KRA-3 · CTC vs Actual Gap',increment:'KRA-3 · Increment Tracker',deduction:'KRA-3 · Deduction Register',pfesi:'KRA-4 · PF/ESI Compliance',gratuity:'KRA-4 · Gratuity Liability',contractcomp:'KRA-4 · Contract Labour',tat:'KRA-5 · Recruitment TAT',offerjoin:'KRA-5 · Offer-to-Join',probation:'KRA-6 · Probation Due',notice:'KRA-6 · Notice Period',fnf:'KRA-6 · F&F Settlement',training:'KRA-7 · Training Status',skillgap:'KRA-7 · Skill Gap',pms:'KRA-8 · PMS / Appraisal',scheduler:'⏰ Report Scheduler',hostguide:'🌐 Host & Deploy Guide',connectors:'🔌 API Connectors'};
+const PAGE_TITLES={kra:'KRA Overview',manpower:'KRA-1 · Headcount vs Budget Gap',attrition:'KRA-1 · Attrition Analysis',attendance:'KRA-2 · Attendance Gap Report',latecomer:'KRA-2 · Late Coming / Early Going',absenteeism:'KRA-2 · Absenteeism Heatmap',overtime:'KRA-2 · Overtime Analysis',salary:'KRA-3 · Salary Format',ctcgap:'KRA-3 · CTC vs Actual Gap',increment:'KRA-3 · Increment Tracker',deduction:'KRA-3 · Deduction Register',pfesi:'KRA-4 · PF/ESI Compliance',gratuity:'KRA-4 · Gratuity Liability',contractcomp:'KRA-4 · Contract Labour',tat:'KRA-5 · Recruitment TAT',offerjoin:'KRA-5 · Offer-to-Join',probation:'KRA-6 · Probation Due',notice:'KRA-6 · Notice Period',fnf:'KRA-6 · F&F Settlement',training:'KRA-7 · Training Status',skillgap:'KRA-7 · Skill Gap',pms:'KRA-8 · PMS / Appraisal',scheduler:'⏰ Report Scheduler',hostguide:'🌐 Host & Deploy Guide',connectors:'🔌 API Connectors',formatdesigner:'🗂 Report Format Designer'};
 
 function go(id,el){
   document.querySelectorAll('.pg').forEach(p=>p.classList.remove('act'));
@@ -1514,6 +2371,487 @@ function runAPITest(){
   },2000);
 }
 
+
+
+// ═══ FORMAT DESIGNER ENGINE ═══
+
+const FD_REPORTS = [
+  {id:'attendance', name:'Attendance Gap Report',     kra:'KRA-2', ico:'📋', cols:['SR NO','LOC CD','LOCATION','E.CODE','NAME','GENDER','D.O.B','JOINING DATE','MOBILE NO','LEAVING DATE','DEPT','DESIGNATION','STATUS','MTH','TTL PRESENT DAYS','MACHINE PRESENT','MANUAL PRESENT','GEO FENCE','PAYABLE DAYS','ABSENT','LWP STATUS','WK-OFF','HLD','POW']},
+  {id:'salary',     name:'Salary Format Report',      kra:'KRA-3', ico:'💰', cols:['SR NO','E.CODE','NAME','LOC','DEPT','BASIC','HRA','DA','CCA','SP ALLOWANCE','REIMB','OVERTIME','INCENTIVE','FOODING','ARREARS','GROSS','PF','ESI','TDS','P-TAX','LOAN','TOTAL DED','NET PAY']},
+  {id:'deduction',  name:'Deduction Register',        kra:'KRA-3', ico:'💸', cols:['SR NO','E.CODE','NAME','LOC','DEPT','UAN NO','PF NO','ESI NO','PAN NO','AADHAR','PF APPLICABLE','ESI APPLICABLE','PF (EMP)','ESI (EMP)','TDS','P-TAX','CASH SHORT','LOAN','TOTAL DED','PF (EMPLR)','ESI (EMPLR)']},
+  {id:'manpower',   name:'Headcount vs Budget',       kra:'KRA-1', ico:'👥', cols:['DEPT','LOCATION','SANCTIONED','ACTUAL','VACANCY','FILL RATE%','NEW JOINERS','EXITS','NET CHANGE','STATUS']},
+  {id:'attrition',  name:'Attrition Analysis',        kra:'KRA-1', ico:'📉', cols:['E.CODE','NAME','DEPT','DESIGNATION','JOINING DATE','EXIT DATE','TENURE','EXIT TYPE','REASON','NOTICE PERIOD','LWD','F&F STATUS']},
+  {id:'latecomer',  name:'Late Coming Report',        kra:'KRA-2', ico:'⏰', cols:['E.CODE','NAME','DEPT','LOC','SHIFT','LATE INSTANCES','EARLY LEAVING','AVG LATE MIN','REGULARIZED','LWP DAYS','DEDUCTION','ACTION']},
+  {id:'absenteeism',name:'Absenteeism Report',        kra:'KRA-2', ico:'🔴', cols:['E.CODE','NAME','DEPT','LOC','TOTAL ABSENT','APPROVED LEAVE','UNINFORMED','MEDICAL','MONDAY ABSENT%','AVG/MONTH']},
+  {id:'overtime',   name:'Overtime Analysis',         kra:'KRA-2', ico:'⚡', cols:['E.CODE','NAME','DEPT','LOC','OT HOURS','OT RATE','OT AMOUNT','APPROVED BY','MONTH']},
+  {id:'ctcgap',     name:'CTC vs Actual Gap',         kra:'KRA-3', ico:'📊', cols:['E.CODE','NAME','DEPT','LOC','OFFERED CTC/MTH','ACTUAL PAID','VARIANCE','GAP%','MONTHS PENDING','STATUS','ACTION']},
+  {id:'increment',  name:'Increment Tracker',         kra:'KRA-3', ico:'📈', cols:['E.CODE','NAME','DEPT','DESIGNATION','JOINING DATE','LAST INCREMENT','NEXT DUE','DAYS OVERDUE','CURRENT CTC','RECOMMENDED%','NEW CTC','STATUS']},
+  {id:'pfesi',      name:'PF / ESI Compliance',       kra:'KRA-4', ico:'🛡', cols:['MONTH','PF DUE DATE','PF CHALLAN NO','PF AMOUNT','PF FILED DATE','ESI DUE DATE','ESI CHALLAN NO','ESI AMOUNT','ESI FILED DATE','PENALTY','REMARKS']},
+  {id:'gratuity',   name:'Gratuity Liability',        kra:'KRA-4', ico:'🏦', cols:['E.CODE','NAME','DEPT','JOINING DATE','YEARS OF SERVICE','LAST BASIC','GRATUITY RATE','GRATUITY EARNED','GRATUITY PAID','BALANCE']},
+  {id:'contractcomp',name:'Contract Labour Report',   kra:'KRA-4', ico:'⚖️', cols:['CONTRACTOR NAME','LICENCE NO','EXPIRY DATE','DAYS TO EXPIRY','CONTRACT WORKERS','LOCATION','STATUS','ACTION']},
+  {id:'tat',        name:'Recruitment TAT',           kra:'KRA-5', ico:'⏱', cols:['POSITION','DEPT','LOC','GRADE','OPEN DATE','DAYS OPEN','CANDIDATES','STAGE','SOURCE','OFFER DATE','JOIN DATE','TAT DAYS','STATUS']},
+  {id:'offerjoin',  name:'Offer-to-Join Ratio',       kra:'KRA-5', ico:'🤝', cols:['MONTH','OFFERS MADE','JOINED','REJECTED','RATIO%','TOP REJECTION REASON','COUNTER OFFERS']},
+  {id:'probation',  name:'Probation Due Report',      kra:'KRA-6', ico:'🔔', cols:['E.CODE','NAME','DEPT','DESIGNATION','JOINING DATE','PROBATION END','DAYS OVERDUE','MANAGER','PERFORMANCE RATING','RECOMMENDATION','STATUS']},
+  {id:'notice',     name:'Notice Period Tracker',     kra:'KRA-6', ico:'📣', cols:['E.CODE','NAME','DEPT','DESIGNATION','RESIGNATION DATE','LWD','DAYS REMAINING','NOTICE TYPE','KT STATUS','REPLACEMENT','F&F STATUS']},
+  {id:'fnf',        name:'F&F Settlement',            kra:'KRA-6', ico:'📂', cols:['E.CODE','NAME','DEPT','LWD','BASIC','HRA','UNPAID SALARY','EL ENCASHMENT','GRATUITY','NOTICE RECOVERY','LOAN RECOVERY','PF SETTLEMENT','TOTAL PAYABLE','STATUS']},
+  {id:'training',   name:'Training Completion',       kra:'KRA-7', ico:'🎓', cols:['E.CODE','NAME','DEPT','MODULE NAME','TYPE','ASSIGNED DATE','COMPLETION DATE','HOURS','SCORE','STATUS','CERTIFICATE']},
+  {id:'skillgap',   name:'Skill Gap Analysis',        kra:'KRA-7', ico:'🔍', cols:['DEPT','SKILL REQUIRED','CURRENT LEVEL','REQUIRED LEVEL','GAP SCORE','EMPLOYEES AFFECTED','TRAINING PLAN','PRIORITY','TARGET DATE']},
+  {id:'pms',        name:'PMS / Appraisal Status',    kra:'KRA-8', ico:'🏆', cols:['E.CODE','NAME','DEPT','MANAGER','SELF SCORE','MANAGER SCORE','HR SCORE','FINAL GRADE','PROMOTION RECOMMENDED','INCREMENT%','STATUS']},
+  {id:'kra',        name:'KRA Dashboard Summary',     kra:'ALL',   ico:'🎯', cols:['KRA ID','KRA NAME','TARGET%','ACHIEVED%','VARIANCE','REPORTS COUNT','STATUS','ACTION REQUIRED']},
+];
+
+let fdActiveReport = null;
+let fdSavedFormats = {};
+let fdColumns = {};     // per report id -> array of col objects
+let fdFormulas = {};    // per report id -> array of formula objects
+let fdTemplates = {};   // per report id -> array of uploaded files
+
+const DATA_TYPES = ['Text','Number','Currency (Rs.)','Date','Date-Time','Percentage','Boolean','Formula','Lookup'];
+
+function fdInit() {
+  fdRenderList(FD_REPORTS);
+  // Preload default columns from config
+  FD_REPORTS.forEach(r => {
+    fdColumns[r.id] = r.cols.map((name,i) => ({
+      name, type: guessType(name), width: 100, visible: true, freeze: i < 2
+    }));
+    fdFormulas[r.id] = getDefaultFormulas(r.id);
+    fdTemplates[r.id] = [];
+  });
+}
+
+function guessType(col) {
+  const c = col.toUpperCase();
+  if(c.includes('DATE')) return 'Date';
+  if(c.includes('AMT')||c.includes('AMOUNT')||c.includes('SALARY')||c.includes('CTC')||c.includes('PAY')||c.includes('BASIC')||c.includes('HRA')||c.includes('GROSS')||c.includes('NET')||c.includes('Rs')||c.includes('PF')||c.includes('ESI')||c.includes('TDS')) return 'Currency (Rs.)';
+  if(c.includes('DAYS')||c.includes('HOURS')||c.includes('COUNT')||c.includes('NO')||c.includes('SR')) return 'Number';
+  if(c.includes('%')||c.includes('PCT')||c.includes('RATE')||c.includes('RATIO')) return 'Percentage';
+  return 'Text';
+}
+
+function getDefaultFormulas(rid) {
+  const base = [
+    {name:'Net Pay',    expr:'{gross} - ({pf} + {esi} + {tds} + {ptax})'},
+    {name:'LWP Amount', expr:'({basic} / {total_days}) * {absent}'},
+    {name:'PF Amount',  expr:'MIN({basic} * 0.12, 1800)'},
+  ];
+  if(rid==='attendance') return [{name:'Absent Days',expr:'{total_days} - {payable_days}'},{name:'Attendance %',expr:'({present_days}/{total_days})*100'}];
+  if(rid==='attrition')  return [{name:'Tenure Years',expr:'DATEDIFF({exit_date},{joining_date},"Y")'},{name:'Replacement Cost',expr:'{basic} * 1.5'}];
+  if(rid==='ctcgap')     return [{name:'Variance',expr:'{ctc} - {actual_paid}'},{name:'Gap %',expr:'(({ctc}-{actual_paid})/{ctc})*100'}];
+  if(rid==='gratuity')   return [{name:'Gratuity',expr:'({last_basic}/26)*15*{years_of_service}'}];
+  return base;
+}
+
+function fdFilterList(q) {
+  const filtered = FD_REPORTS.filter(r =>
+    r.name.toLowerCase().includes(q.toLowerCase()) ||
+    r.kra.toLowerCase().includes(q.toLowerCase())
+  );
+  fdRenderList(filtered);
+}
+
+function fdRenderList(reports) {
+  const el = document.getElementById('fd-report-list');
+  if(!el) return;
+  el.innerHTML = reports.map(r => {
+    const saved = fdSavedFormats[r.id];
+    return `<div class="fd-rpt-item ${fdActiveReport===r.id?'act':''}" onclick="fdSelectReport('${r.id}')">
+      <div class="fd-rpt-ico">${r.ico}</div>
+      <div class="fd-rpt-info">
+        <div class="fd-rpt-name">${r.name}</div>
+        <div class="fd-rpt-kra">${r.kra}</div>
+      </div>
+      <div class="fd-rpt-badge" style="background:${saved?'rgba(16,185,129,.12)':'rgba(100,116,139,.1)'};color:${saved?'var(--g)':'var(--mu)'}">${saved?'✓ Saved':'Draft'}</div>
+    </div>`;
+  }).join('');
+}
+
+function fdSelectReport(rid) {
+  fdActiveReport = rid;
+  const r = FD_REPORTS.find(x => x.id===rid);
+  if(!r) return;
+  // Update all tab headers
+  ['fd-active-name','fd-upload-rpt-name','fd-style-rpt-name','fd-formula-rpt-name','fd-preview-rpt-name','fd-output-rpt-name'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = r.name;
+  });
+  document.getElementById('fd-active-kra').textContent = r.kra + '  ·  ' + (fdColumns[rid]||[]).length + ' columns defined';
+  fdRenderList(FD_REPORTS);
+  fdRenderColumns(rid);
+  fdRenderFormulas(rid);
+  fdRenderTemplates(rid);
+  fdRenderPreview(rid);
+}
+
+function fdRenderColumns(rid) {
+  const cols = fdColumns[rid] || [];
+  const el = document.getElementById('fd-col-list');
+  if(!el) return;
+  el.innerHTML = cols.map((col,i) => `
+    <div class="col-row" id="fdcol-${i}">
+      <div class="col-drag">⠿</div>
+      <input class="col-input" value="${col.name}" oninput="fdUpdateCol(${i},'name',this.value)" placeholder="Column Name">
+      <select class="col-select" onchange="fdUpdateCol(${i},'type',this.value)">
+        ${DATA_TYPES.map(t=>`<option ${t===col.type?'selected':''}>${t}</option>`).join('')}
+      </select>
+      <input class="col-input" type="number" value="${col.width}" min="50" max="400" oninput="fdUpdateCol(${i},'width',+this.value)" style="width:70px">
+      <div class="col-toggle-cell"><button class="tog ${col.visible?'on':''}" onclick="fdToggleCol(${i},'visible',this)"></button></div>
+      <div class="col-toggle-cell"><button class="tog ${col.freeze?'on':''}" onclick="fdToggleCol(${i},'freeze',this)"></button></div>
+      <button class="col-del" onclick="fdDeleteCol(${i})">✕</button>
+    </div>`).join('');
+}
+
+function fdUpdateCol(i,prop,val) {
+  if(!fdActiveReport) return;
+  fdColumns[fdActiveReport][i][prop] = val;
+}
+function fdToggleCol(i,prop,btn) {
+  if(!fdActiveReport) return;
+  fdColumns[fdActiveReport][i][prop] = !fdColumns[fdActiveReport][i][prop];
+  btn.classList.toggle('on');
+}
+function fdDeleteCol(i) {
+  if(!fdActiveReport) return;
+  fdColumns[fdActiveReport].splice(i,1);
+  fdRenderColumns(fdActiveReport);
+}
+function fdAddCol() {
+  if(!fdActiveReport) { toast('Select a report first!','⚠️'); return; }
+  fdColumns[fdActiveReport].push({name:'New Column',type:'Text',width:100,visible:true,freeze:false});
+  fdRenderColumns(fdActiveReport);
+}
+function fdClearAll() {
+  if(!fdActiveReport) return;
+  if(confirm('Clear all columns for this report?')) {
+    fdColumns[fdActiveReport] = [];
+    fdRenderColumns(fdActiveReport);
+  }
+}
+function fdLoadDefault() {
+  if(!fdActiveReport) return;
+  const r = FD_REPORTS.find(x=>x.id===fdActiveReport);
+  if(!r) return;
+  fdColumns[fdActiveReport] = r.cols.map((name,i)=>({name,type:guessType(name),width:100,visible:true,freeze:i<2}));
+  fdRenderColumns(fdActiveReport);
+  toast('Default columns loaded!','✅');
+}
+function fdSaveCols() {
+  if(!fdActiveReport) { toast('Select a report first!','⚠️'); return; }
+  fdSavedFormats[fdActiveReport] = true;
+  const count = Object.keys(fdSavedFormats).length;
+  document.getElementById('fd-saved-count').textContent = count + ' format' + (count!==1?'s':'') + ' saved';
+  fdRenderList(FD_REPORTS);
+  toast('Columns saved for ' + (FD_REPORTS.find(r=>r.id===fdActiveReport)||{}).name + '!','✅');
+}
+
+function fdRenderFormulas(rid) {
+  const formulas = fdFormulas[rid] || [];
+  const el = document.getElementById('fd-formula-list');
+  if(!el) return;
+  el.innerHTML = formulas.map((f,i) => `
+    <div class="formula-row">
+      <div class="formula-name">
+        <input class="col-input" value="${f.name}" oninput="fdFormulas['${rid}'][${i}].name=this.value" style="width:200px">
+        <button class="col-del" onclick="fdDeleteFormula(${i})">✕</button>
+      </div>
+      <input class="col-input formula-expr" value="${f.expr}" oninput="fdFormulas['${rid}'][${i}].expr=this.value" style="font-family:monospace;color:var(--tl)">
+    </div>`).join('');
+}
+function fdAddFormula() {
+  if(!fdActiveReport){toast('Select a report first!','⚠️');return;}
+  fdFormulas[fdActiveReport].push({name:'New Formula',expr:'{field1} + {field2}'});
+  fdRenderFormulas(fdActiveReport);
+}
+function fdDeleteFormula(i) {
+  if(!fdActiveReport) return;
+  fdFormulas[fdActiveReport].splice(i,1);
+  fdRenderFormulas(fdActiveReport);
+}
+function fdLoadDefaultFormulas() {
+  if(!fdActiveReport) return;
+  fdFormulas[fdActiveReport] = getDefaultFormulas(fdActiveReport);
+  fdRenderFormulas(fdActiveReport);
+  toast('Default formulas loaded!','↺');
+}
+function fdSaveFormulas() {
+  if(!fdActiveReport){toast('Select a report!','⚠️');return;}
+  toast('Formulas saved!','✅');
+}
+function fdSaveStyle() { toast('Style saved!','🎨'); }
+function fdSaveOutput() { toast('Output settings saved!','💾'); }
+
+function fdRenderTemplates(rid) {
+  const el = document.getElementById('fd-existing-templates');
+  if(!el) return;
+  const templates = fdTemplates[rid] || [];
+  if(templates.length === 0) {
+    el.innerHTML = '<div style="font-size:11px;color:var(--mu);padding:8px 0">No templates uploaded yet for this report.</div>';
+    return;
+  }
+  el.innerHTML = templates.map((t,i)=>`
+    <div class="upload-file-item">
+      <div class="upload-file-ico">${t.name.endsWith('.pdf')?'📄':t.name.endsWith('.csv')?'📑':'📊'}</div>
+      <div class="upload-file-name">${t.name}</div>
+      <div class="upload-file-size">${t.size}</div>
+      <span class="tag tg" style="font-size:9px">Mapped</span>
+      <button class="upload-file-del" onclick="fdDeleteTemplate('${rid}',${i})">✕</button>
+    </div>`).join('');
+}
+
+function handleFileUpload(input) {
+  if(!fdActiveReport){toast('Select a report first!','⚠️');input.value='';return;}
+  const files = Array.from(input.files);
+  files.forEach(f => {
+    const sizeKB = Math.round(f.size/1024);
+    const size = sizeKB > 1024 ? (sizeKB/1024).toFixed(1)+' MB' : sizeKB+' KB';
+    if(!fdTemplates[fdActiveReport]) fdTemplates[fdActiveReport]=[];
+    fdTemplates[fdActiveReport].push({name:f.name, size});
+    // Show in uploaded list
+    const ul = document.getElementById('uploaded-files-list');
+    const div = document.createElement('div');
+    div.className='upload-file-item';
+    div.innerHTML=`<div class="upload-file-ico">📊</div><div class="upload-file-name">${f.name}</div><div class="upload-file-size">${size}</div><span class="tag tg" style="font-size:9px">✓ Uploaded</span>`;
+    ul.appendChild(div);
+  });
+  fdRenderTemplates(fdActiveReport);
+  toast(files.length + ' template(s) uploaded! Columns auto-mapped.','✅');
+  // Auto-update column tab title
+  setTimeout(()=>{
+    const r=FD_REPORTS.find(x=>x.id===fdActiveReport);
+    if(r) toast('Column structure detected from '+files[0].name,'🔍');
+  },800);
+  input.value='';
+}
+
+function fdDeleteTemplate(rid,i) {
+  fdTemplates[rid].splice(i,1);
+  fdRenderTemplates(rid);
+  toast('Template removed','🗑');
+}
+
+function fdRenderPreview(rid) {
+  const cols = (fdColumns[rid]||[]).filter(c=>c.visible).slice(0,8);
+  const el = document.getElementById('fd-preview-table');
+  if(!el||!cols.length) return;
+  const sampleData = [
+    ['001','EMP1001','Rahul Sharma','Operations','Sr. Mgr','24','Rs.85,000','Rs.71,200'],
+    ['002','EMP1002','Priya Verma','Finance','Manager','26','Rs.62,000','Rs.52,400'],
+    ['003','EMP1003','Amit Singh','IT','Executive','22','Rs.45,000','Rs.36,900'],
+    ['004','EMP1004','Sneha Patel','HR','Asst. Mgr','25','Rs.38,000','Rs.31,600'],
+  ];
+  el.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:11px">
+    <thead><tr style="background:#1e3a5f">${cols.map(c=>`<th style="padding:8px 10px;text-align:left;color:#fff;white-space:nowrap;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase">${c.name}</th>`).join('')}</tr></thead>
+    <tbody>${sampleData.map((row,ri)=>`<tr style="background:${ri%2===0?'rgba(232,240,254,.05)':'transparent'}">${cols.map((_,ci)=>`<td style="padding:7px 10px;border-bottom:1px solid rgba(30,45,69,.5);color:var(--tx)">${row[ci]||'—'}</td>`).join('')}</tr>`).join('')}</tbody>
+  </table>`;
+}
+
+function fdRefreshPreview(){
+  if(fdActiveReport) fdRenderPreview(fdActiveReport);
+  toast('Preview refreshed!','🔄');
+}
+
+function fdSaveAll() {
+  FD_REPORTS.forEach(r => { fdSavedFormats[r.id] = true; });
+  const count = FD_REPORTS.length;
+  document.getElementById('fd-saved-count').textContent = count + ' formats saved';
+  fdRenderList(FD_REPORTS);
+  toast('All ' + count + ' report formats saved!','✅');
+}
+
+function fdExportConfig() {
+  toast('Exporting format config as JSON...','📤');
+  setTimeout(()=>toast('format-config.json downloaded!','⬇'),1200);
+}
+
+function fdApplyAll() {
+  toast('Applying all format settings to live reports...','✅');
+  setTimeout(()=>toast('All 22 reports updated with new formats!','🎉'),1500);
+}
+
+function fdSwitchTab(tab, el) {
+  // Hide all tabs
+  ['columns','upload','style','formulas','preview','output'].forEach(t=>{
+    const el2=document.getElementById('fd-tab-'+t);
+    if(el2) el2.style.display='none';
+  });
+  // Deactivate all tab buttons
+  el.closest('.fd-panel-tabs').querySelectorAll('.fd-tab').forEach(t=>t.classList.remove('act'));
+  // Show selected
+  const target=document.getElementById('fd-tab-'+tab);
+  if(target) target.style.display='block';
+  el.classList.add('act');
+  if(tab==='preview' && fdActiveReport) fdRenderPreview(fdActiveReport);
+}
+
+
+// ═══ EXECUTE ENGINE ═══
+const FMT_PREFS = {};  // stores per-report selected format
+
+const EXEC_STEPS = {
+  default: [
+    {name:'Authenticate API',      desc:'Validating credentials & token',          ms:600},
+    {name:'Connect to Data Source',desc:'Establishing secure connection',           ms:800},
+    {name:'Fetch Raw Data',        desc:'Pulling records from source system',       ms:1200},
+    {name:'Validate Records',      desc:'Checking data integrity & completeness',   ms:600},
+    {name:'Apply Business Rules',  desc:'Running KRA calculations & transforms',    ms:900},
+    {name:'Generate Report',       desc:'Building report in selected format',       ms:700},
+    {name:'Ready for Download',    desc:'Report packaged and ready',                ms:300},
+  ],
+  kra: [
+    {name:'Connect All Systems',   desc:'Authenticating 3 live APIs + XLSB files', ms:700},
+    {name:'Fetch Headcount Data',  desc:'482 employee records from HRMS',           ms:600},
+    {name:'Fetch Payroll Totals',  desc:'Salary summary from Payroll engine',       ms:800},
+    {name:'Fetch Attendance',      desc:'Monthly punch data from Biometric',        ms:600},
+    {name:'Compute KRA Scores',    desc:'Calculating 8 KRA performance scores',     ms:1000},
+    {name:'Build KRA Dashboard',   desc:'Rendering all charts & KPI cards',         ms:700},
+    {name:'Ready for Download',    desc:'Full KRA bundle packaged',                  ms:300},
+  ],
+  connectors: [
+    {name:'Ping All Endpoints',    desc:'Testing connectivity to all 8 APIs',       ms:800},
+    {name:'Validate Tokens',       desc:'Checking auth tokens & expiry',             ms:600},
+    {name:'Test Data Pull',        desc:'Fetching sample records (5 per source)',    ms:900},
+    {name:'Check Field Mapping',   desc:'Validating API fields vs KPI mapping',      ms:500},
+    {name:'Connection Report',     desc:'Building connector status report',          ms:400},
+  ],
+};
+
+const EXEC_RESULTS = {
+  default:    '// Data fetch complete\n{\n  "status": "success",\n  "records": 482,\n  "generated_at": "2026-03-31T08:14:00Z",\n  "report_size": "2.4 MB",\n  "format": "xlsx"\n}',
+  attendance: '// Attendance Gap Report\n{\n  "status": "success",\n  "employees": 482,\n  "avg_present_days": 23.4,\n  "lwp_cases": 38,\n  "machine_punch_pct": 91.2,\n  "month": "FEB-2026"\n}',
+  salary:     '// Salary Format Report\n{\n  "status": "success",\n  "employees": 482,\n  "gross_payable": "21400000",\n  "net_payable": "17100000",\n  "deductions": "4300000",\n  "month": "FEB-2026"\n}',
+  manpower:   '// Headcount Report\n{\n  "status": "success",\n  "sanctioned": 540,\n  "actual": 482,\n  "vacancies": 58,\n  "fill_rate": "89.3%"\n}',
+};
+
+let execTimer = null;
+
+function selFmt(el, pid, fmt) {
+  // Deselect all chips in this page's exec bar
+  const bar = document.getElementById('execbar-' + pid);
+  if (!bar) return;
+  bar.querySelectorAll('.fmt-chip').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  FMT_PREFS[pid] = fmt;
+}
+
+function getFmt(pid) {
+  return FMT_PREFS[pid] || 'xlsx';
+}
+
+function getFmtLabel(fmt) {
+  const map = {xlsx:'Excel (.xlsx)', pdf:'PDF Report', csv:'CSV Data', json:'JSON / API', both:'All Formats'};
+  return map[fmt] || fmt.toUpperCase();
+}
+
+function execReport(pid, name, source) {
+  const fmt = getFmt(pid);
+  const steps = EXEC_STEPS[pid] || EXEC_STEPS.default;
+  
+  // Open modal
+  const ov = document.getElementById('exec-ov');
+  document.getElementById('exec-mo-title').textContent = 'Executing: ' + name;
+  document.getElementById('exec-mo-sub').textContent = 'Source: ' + source + '  |  Format: ' + getFmtLabel(fmt);
+  document.getElementById('exec-mo-badge').textContent = 'Running...';
+  document.getElementById('exec-mo-badge').className = 'exec-badge pending';
+  document.getElementById('exec-close-btn').style.display = 'none';
+  document.getElementById('exec-dl-btn').style.display = 'none';
+  document.getElementById('exec-result-box').style.display = 'none';
+  document.getElementById('exec-footer-info').textContent = 'Format: ' + getFmtLabel(fmt) + '  |  Source: ' + source;
+  document.getElementById('exec-prog-fill').style.width = '0%';
+  document.getElementById('exec-prog-pct').textContent = '0%';
+  document.getElementById('exec-prog-lbl').textContent = 'Initializing...';
+  
+  // Render steps
+  const stepsEl = document.getElementById('exec-steps-list');
+  stepsEl.innerHTML = steps.map((s,i) => `
+    <div class="exec-step" id="estep-${i}">
+      <div class="exec-step-ico" id="estep-ico-${i}">⏳</div>
+      <div class="exec-step-info">
+        <div class="exec-step-name">${s.name}</div>
+        <div class="exec-step-desc">${s.desc}</div>
+      </div>
+      <div class="exec-step-time" id="estep-time-${i}">-</div>
+    </div>`).join('');
+  
+  ov.classList.add('open');
+  
+  // Run steps sequentially
+  let totalMs = steps.reduce((a,s) => a+s.ms, 0);
+  let elapsed = 0;
+  let stepIdx = 0;
+  
+  function runStep(idx) {
+    if (idx >= steps.length) {
+      // Done!
+      document.getElementById('exec-mo-badge').textContent = 'Complete!';
+      document.getElementById('exec-mo-badge').className = 'exec-badge';
+      document.getElementById('exec-prog-fill').style.width = '100%';
+      document.getElementById('exec-prog-pct').textContent = '100%';
+      document.getElementById('exec-prog-lbl').textContent = 'Report ready!';
+      document.getElementById('exec-close-btn').style.display = 'inline-flex';
+      document.getElementById('exec-dl-btn').style.display = 'inline-flex';
+      const rbox = document.getElementById('exec-result-box');
+      rbox.textContent = EXEC_RESULTS[pid] || EXEC_RESULTS.default;
+      rbox.style.display = 'block';
+      toast(name + ' generated successfully!', '✅');
+      // Update exec bar last run
+      const bar = document.getElementById('execbar-' + pid);
+      if(bar) {
+        const existing = bar.querySelector('.last-exec');
+        if(existing) existing.remove();
+        const ts = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+        const le = document.createElement('div');
+        le.className='last-exec';
+        le.innerHTML='<span>✓ Last run:</span><b>'+ts+'</b>';
+        bar.querySelector('.exec-bar-right').prepend(le);
+      }
+      return;
+    }
+    
+    const step = steps[idx];
+    
+    // Activate current step
+    const ico = document.getElementById('estep-ico-' + idx);
+    if(ico) { ico.textContent = '⚡'; ico.className = 'exec-step-ico active'; }
+    document.getElementById('exec-prog-lbl').textContent = step.name + '...';
+    
+    // Mark previous steps done
+    if(idx > 0) {
+      const prevIco = document.getElementById('estep-ico-' + (idx-1));
+      if(prevIco) { prevIco.textContent = '✓'; prevIco.className = 'exec-step-ico done'; }
+      const prevTime = document.getElementById('estep-time-' + (idx-1));
+      if(prevTime) prevTime.textContent = steps[idx-1].ms + 'ms';
+    }
+    
+    elapsed += step.ms;
+    const pct = Math.round((elapsed / totalMs) * 95);
+    document.getElementById('exec-prog-fill').style.width = pct + '%';
+    document.getElementById('exec-prog-pct').textContent = pct + '%';
+    
+    execTimer = setTimeout(() => runStep(idx + 1), step.ms);
+  }
+  
+  setTimeout(() => runStep(0), 100);
+}
+
+function closeExecModal() {
+  document.getElementById('exec-ov').classList.remove('open');
+  if(execTimer) clearTimeout(execTimer);
+}
+
+function downloadExecResult() {
+  const title = document.getElementById('exec-mo-title').textContent.replace('Executing: ','');
+  const fmt = document.getElementById('exec-footer-info').textContent.split('Format: ')[1]?.split('  |')[0] || 'xlsx';
+  closeExecModal();
+  toast('Downloading: ' + title + '...', '⬇');
+  setTimeout(() => toast('File downloaded successfully!', '✅'), 1200);
+}
+
+// Close exec modal on backdrop click
+document.getElementById('exec-ov')?.addEventListener('click', function(e){
+  if(e.target === this) closeExecModal();
+});
+
+
 // CLOCK
 setInterval(()=>{try{document.getElementById('clk').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}catch(e){}},1000);
 
@@ -1537,10 +2875,38 @@ renderCharts();
 renderSchedTable();
 renderLogTable();
 renderConnectors();
+fdInit();
   } catch(e) {
     console.error('Dashboard init error:', e);
   }
 });
 </script>
+
+<!-- ═══ EXECUTE PROGRESS MODAL ═══ -->
+<div class="exec-ov" id="exec-ov">
+  <div class="exec-mo">
+    <div class="exec-mo-head">
+      <div>
+        <div class="exec-mo-title" id="exec-mo-title">⚡ Executing Report...</div>
+        <div style="font-size:10.5px;color:var(--mu);margin-top:2px" id="exec-mo-sub">Fetching data from connected API sources</div>
+      </div>
+      <div id="exec-mo-badge" class="exec-badge pending">Running...</div>
+    </div>
+    <div class="exec-steps" id="exec-steps-list"></div>
+    <div class="exec-progress-wrap">
+      <div class="exec-progress-label"><span id="exec-prog-lbl">Initializing...</span><span id="exec-prog-pct">0%</span></div>
+      <div class="exec-progress-bar"><div class="exec-progress-fill" id="exec-prog-fill"></div></div>
+    </div>
+    <div class="exec-result-box" id="exec-result-box"></div>
+    <div class="exec-footer">
+      <div class="exec-footer-info" id="exec-footer-info">Format: Excel · Source: API</div>
+      <div style="display:flex;gap:7px">
+        <button class="btn bg1" id="exec-close-btn" onclick="closeExecModal()" style="display:none">Close</button>
+        <button class="btn bp" id="exec-dl-btn" onclick="downloadExecResult()" style="display:none">⬇ Download Result</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
